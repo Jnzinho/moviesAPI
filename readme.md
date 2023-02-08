@@ -3,4 +3,4 @@
 GET /movies -> Gets all movies in JSON format <br>
 GET /movies/ID -> Get a movie by its ID <br>
 POST /movies -> Add a new movie <br>
-DELTE /movies/ID -> Deletes a movie by its ID <br>
+DELETE /movies/ID -> Deletes a movie by its ID <br>
