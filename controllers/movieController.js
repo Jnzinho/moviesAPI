@@ -9,3 +9,22 @@ exports.getMovies = (req, res) => {
     data: movies,
   });
 };
+
+exports.addMovie = (req, res) => {
+  const newID = movies[movies.length - 1].id + 1;
+  const newMovie = Object.assign({ id: newID }, req.body);
+  movies.push(newMovie);
+
+  fs.writeFile(
+    `${__dirname}/../data/movies.json`,
+    JSON.stringify(movies),
+    (err) => {
+      res.status(201).json({
+        status: 'success',
+        data: {
+          movie: newMovie,
+        },
+      });
+    }
+  );
+};
