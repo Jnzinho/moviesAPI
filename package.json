@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon dist/server.js",
     "build": "./node_modules/.bin/babel ./src --out-dir dist",
-    "test": "node dist/test/tests.js"
+    "test": "mocha"
   },
   "author": "@jnzinho",
   "license": "ISC",
