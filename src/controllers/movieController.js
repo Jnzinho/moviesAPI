@@ -26,10 +26,11 @@ export const getMovies = (req, res) => {
 export const addMovie = (req, res) => {
   const newID = movies[movies.length - 1].id + 1;
   const newMovie = Object.assign({ id: newID }, req.body);
+  console.log(newMovie);
   movies.push(newMovie);
 
   fs.writeFile(
-    `${__dirname}/../data/movies.json`,
+    `${__dirname}/../../data/movies.json`,
     JSON.stringify(movies),
     (err) => {
       res.status(201).json({
@@ -59,7 +60,7 @@ export const deleteMovie = (req, res) => {
 
   const updatedMovies = movies.filter((m) => m.id !== movie.id);
   fs.writeFile(
-    `${__dirname}/../data/movies.json`,
+    `${__dirname}/../../data/movies.json`,
     JSON.stringify(updatedMovies),
     (err) => {
       res.status(204).send({
@@ -78,7 +79,7 @@ export const updateMovie = (req, res, next) => {
     m.id === updatedMovie.id ? updatedMovie : m
   );
   fs.writeFile(
-    `${__dirname}/../data/movies.json`,
+    `${__dirname}/../../data/movies.json`,
     JSON.stringify(updatedMovies),
     (err) => {
       res.status(200).json({

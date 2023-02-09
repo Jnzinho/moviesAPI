@@ -34,8 +34,9 @@ var addMovie = function addMovie(req, res) {
   var newMovie = Object.assign({
     id: newID
   }, req.body);
+  console.log(newMovie);
   movies.push(newMovie);
-  _fs["default"].writeFile("".concat(__dirname, "/../data/movies.json"), JSON.stringify(movies), function (err) {
+  _fs["default"].writeFile("".concat(__dirname, "/../../data/movies.json"), JSON.stringify(movies), function (err) {
     res.status(201).json({
       status: 'success',
       data: {
@@ -66,7 +67,7 @@ var deleteMovie = function deleteMovie(req, res) {
   var updatedMovies = movies.filter(function (m) {
     return m.id !== movie.id;
   });
-  _fs["default"].writeFile("".concat(__dirname, "/../data/movies.json"), JSON.stringify(updatedMovies), function (err) {
+  _fs["default"].writeFile("".concat(__dirname, "/../../data/movies.json"), JSON.stringify(updatedMovies), function (err) {
     res.status(204).send({
       status: 'success',
       data: null
@@ -85,7 +86,7 @@ var updateMovie = function updateMovie(req, res, next) {
   var updatedMovies = movies.map(function (m) {
     return m.id === updatedMovie.id ? updatedMovie : m;
   });
-  _fs["default"].writeFile("".concat(__dirname, "/../data/movies.json"), JSON.stringify(updatedMovies), function (err) {
+  _fs["default"].writeFile("".concat(__dirname, "/../../data/movies.json"), JSON.stringify(updatedMovies), function (err) {
     res.status(200).json({
       status: 'success',
       data: updatedMovies
