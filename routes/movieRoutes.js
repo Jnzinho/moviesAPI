@@ -4,6 +4,8 @@ const express = require('express');
 
 const router = express.Router();
 
+router.param('id', movieController.checkID);
+
 router.get('/', movieController.getMovies);
 
 router.post('/', movieController.addMovie);

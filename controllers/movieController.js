@@ -3,6 +3,17 @@ const { nextTick } = require('process');
 
 const movies = JSON.parse(fs.readFileSync(`${__dirname}/../data/movies.json`));
 
+exports.checkID = (req, res, next) => {
+  const id = req.params.id;
+  if (id < 1 || id > movies.length) {
+    return res.status(404).json({
+      status: 'error',
+      message: 'Id not found',
+    });
+  }
+  next();
+};
+
 exports.getMovies = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -33,7 +44,6 @@ exports.addMovie = (req, res) => {
 exports.getMovie = (req, res) => {
   const id = req.params.id * 1;
   const movie = movies.find((el) => el.id === id);
-  console.log(movie);
   res.status(200).json({
     status: 'success',
     data: {
