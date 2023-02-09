@@ -8,12 +8,12 @@ PUT /movies/ID -> Updates a movie specific with its ID <br>
 
 <h3>Build</h3>
 
-You can build the project with <ul>"npm run build"<ul> on the root folder<br>
+You can build the project with "npm run build" on the root folder
 
 <h3>Run Server</h3>
 
-You can start the api by simply running <ul>"npm start"</ul> at the root folder! <br>
+You can start the api by simply running "npm start" at the root folder!
 
 <h3>Testing</h3>
 
-To run a test you need to run <ul>"npm run test"</ul> ** after the project is builded and the server is running! **
+To run a test you need to run "npm run test" (after the project is builded and the server is running!)
