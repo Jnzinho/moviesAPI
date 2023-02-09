@@ -1,7 +1,8 @@
-const fs = require('fs');
-const { nextTick } = require('process');
+import fs from 'fs';
 
-const movies = JSON.parse(fs.readFileSync(`${__dirname}/../data/movies.json`));
+const movies = JSON.parse(
+  fs.readFileSync(`${__dirname}/../../data/movies.json`)
+);
 
 exports.checkID = (req, res, next) => {
   const id = req.params.id;

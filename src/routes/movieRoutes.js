@@ -1,6 +1,8 @@
-const movieController = require('../controllers/movieController');
+// const movieController = require('../controllers/movieController');
+import movieController from '../controllers/movieController';
 
-const express = require('express');
+// const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
