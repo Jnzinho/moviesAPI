@@ -58,3 +58,22 @@ exports.deleteMovie = (req, res) => {
     }
   );
 };
+
+exports.updateMovie = (req, res, next) => {
+  const id = req.params.id * 1;
+  const movie = movies.find((movie) => movie.id === id);
+  const updatedMovie = { id, ...req.body };
+  const updatedMovies = movies.map((m) =>
+    m.id === updatedMovie.id ? updatedMovie : m
+  );
+  fs.writeFile(
+    `${__dirname}/../data/movies.json`,
+    JSON.stringify(updatedMovies),
+    (err) => {
+      res.status(200).json({
+        status: 'success',
+        data: updatedMovies,
+      });
+    }
+  );
+};
