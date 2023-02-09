@@ -4,7 +4,7 @@ const movies = JSON.parse(
   fs.readFileSync(`${__dirname}/../../data/movies.json`)
 );
 
-exports.checkID = (req, res, next) => {
+export const checkID = (req, res, next) => {
   const id = req.params.id;
   if (id < 1 || id > movies.length) {
     return res.status(404).json({
@@ -15,7 +15,7 @@ exports.checkID = (req, res, next) => {
   next();
 };
 
-exports.getMovies = (req, res) => {
+export const getMovies = (req, res) => {
   res.status(200).json({
     status: 'success',
     results: movies.length,
@@ -23,7 +23,7 @@ exports.getMovies = (req, res) => {
   });
 };
 
-exports.addMovie = (req, res) => {
+export const addMovie = (req, res) => {
   const newID = movies[movies.length - 1].id + 1;
   const newMovie = Object.assign({ id: newID }, req.body);
   movies.push(newMovie);
@@ -42,7 +42,7 @@ exports.addMovie = (req, res) => {
   );
 };
 
-exports.getMovie = (req, res) => {
+export const getMovie = (req, res) => {
   const id = req.params.id * 1;
   const movie = movies.find((el) => el.id === id);
   res.status(200).json({
@@ -53,7 +53,7 @@ exports.getMovie = (req, res) => {
   });
 };
 
-exports.deleteMovie = (req, res) => {
+export const deleteMovie = (req, res) => {
   const id = req.params.id * 1;
   const movie = movies.find((el) => el.id === id);
 
@@ -70,7 +70,7 @@ exports.deleteMovie = (req, res) => {
   );
 };
 
-exports.updateMovie = (req, res, next) => {
+export const updateMovie = (req, res, next) => {
   const id = req.params.id * 1;
   const movie = movies.find((movie) => movie.id === id);
   const updatedMovie = { id, ...req.body };

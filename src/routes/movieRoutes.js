@@ -1,21 +1,29 @@
 // const movieController = require('../controllers/movieController');
-import movieController from '../controllers/movieController';
+// import { movieController } from '../controllers/movieController';
+import {
+  checkID,
+  getMovies,
+  addMovie,
+  getMovie,
+  deleteMovie,
+  updateMovie,
+} from '../controllers/movieController';
 
 // const express = require('express');
 import express from 'express';
 
 const router = express.Router();
 
-router.param('id', movieController.checkID);
+router.param('id', checkID);
 
-router.get('/', movieController.getMovies);
+router.get('/', getMovies);
 
-router.post('/', movieController.addMovie);
+router.post('/', addMovie);
 
-router.get('/:id', movieController.getMovie);
+router.get('/:id', getMovie);
 
-router.delete('/:id', movieController.deleteMovie);
+router.delete('/:id', deleteMovie);
 
-router.put('/:id', movieController.updateMovie);
+router.put('/:id', updateMovie);
 
 module.exports = router;
