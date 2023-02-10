@@ -5,24 +5,28 @@ const fs = require('fs');
 const movies = JSON.parse(fs.readFileSync(`${__dirname}/../data/movies.json`));
 
 // mudar toda vez que for testar, se não o filme já estará deletado e resultará em código 404 ou 500
-const movieToBeDeleted = 242;
+const movieToBeDeleted = 101;
 
-const testDelete = function () {
-  describe(`DELETE /movies/id`, function () {
-    it('IT should have a status code 204', function (done) {
-      request('http://localhost:3000')
-        .delete(`/movies/${movieToBeDeleted}`)
-        .expect(204)
-        .end((err, res) => {
-          if (err) {
-            done(err);
-          } else {
-            done();
-          }
-        });
-    });
+beforeEach(function (done) {
+  setTimeout(function () {
+    done();
+  }, 1000);
+});
+
+describe(`DELETE /movies/id`, function () {
+  it('IT should have a status code 204', function (done) {
+    request('http://localhost:3000')
+      .delete(`/movies/${movieToBeDeleted}`)
+      .expect(204)
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        } else {
+          done();
+        }
+      });
   });
-};
+});
 
 describe('GET /movies', function () {
   it('It should have status code 200', function (done) {
@@ -117,5 +121,3 @@ describe('PUT /movies/id', function () {
       });
   });
 });
-
-setTimeout(testDelete, 2000);
